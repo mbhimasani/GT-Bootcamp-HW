@@ -11,7 +11,6 @@ with open(budget_csv, newline="") as csvfile:
 
     # Read and skip the header row first
     csv_header = next(csvfile)
-    print(f"Header: {csv_header}") #print Header
 
     # counting index and row
     for counter, row in enumerate(csvreader):
@@ -46,9 +45,22 @@ with open(budget_csv, newline="") as csvfile:
     last_value = row[1] #store profit/loss of Feb-2017
     average = round(((int(last_value) - int(first_value))/(int(total_months - 1))), 2) #calculating average change between months over entire period, rounded to 2 decimals
 
+output = (
+    "\nFinancial Analysis\n"
+    "----------------------------\n"
+    "Total Months:" + str(total_months)+ "\n"
+    "Total: $" + str(net_amount) + "\n"
+    "Average Change: $" + str(average) + "\n"
+    "Greatest Increase in Profits: " + str(maximum[0]) + " ($" + str(maximum[1]) + ")\n"
+    "Greatest Decrease in Profits: " + str(minimum[0]) + " ($" + str(minimum[1]) + ")\n"
+)
 
-    print("Total Months:" + str(total_months))
-    print("Total: $" + str(net_amount))
-    print("Average Change: $" + str(average))
-    print("Greatest Increase in Profits: " + str(maximum[0]) + " ($" + str(maximum[1]) + ")")
-    print("Greatest Decrease in Profits: " + str(minimum[0]) + " ($" + str(minimum[1]) + ")")
+# Print output to terminal
+print(output)
+
+# Open/create Summary csv file
+Summary_csv = os.path.join("Financial_Analysis")
+
+# write to Summary csv file
+with open(Summary_csv, "w") as text_file:
+    text_file.write(output)

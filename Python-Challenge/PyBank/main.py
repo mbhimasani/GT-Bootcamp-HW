@@ -59,7 +59,7 @@ output = (
 print(output)
 
 # Open/create Summary csv file
-Summary_csv = os.path.join("Financial_Analysis")
+Summary_csv = os.path.join("Financial_Analysis.txt")
 
 # write to Summary csv file
 with open(Summary_csv, "w") as text_file:

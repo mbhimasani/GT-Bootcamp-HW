@@ -5,7 +5,7 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func, inspect
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import datetime as dt
 
 engine = create_engine("sqlite:///Resources/hawaii.sqlite")
@@ -30,6 +30,7 @@ def welcome():
         f"/api/v1.0/start<br/>"
         f"/api/v1.0/start/end<br/>"
         f"- When given the start and the end date (YYYY-MM-DD), calculate the MIN/AVG/MAX temperature for dates between the start and end date inclusive<br/>"
+        )
 
 @app.route("/api/v1.0/precipitation")
 def precipitation():
@@ -72,9 +73,9 @@ def tobs():
     return jsonify(all_tobs)
 
 @app.route("/api/v1.0/<start>")
-def trip1(start):
-
-    start_date= dt.datetime.strptime(start, '%Y-%m-%d')
+def trip1(start=None):
+    print(start)
+    start = dt.datetime.strptime(start, '%Y-%m-%d')
     trip1_data = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
         filter(Measurement.date >= start_date).all()
     trip1 = list(np.ravel(trip1_data))

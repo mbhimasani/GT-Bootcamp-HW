@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>NASA Mars Scrape!</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <article>
+    <header style='padding-top: 20px; padding-bottom: 20px; padding-left: 100px; padding-right: 100px;'>
+      <div class="container-fluid" style='background-color: lightgrey; border-radius: 8px'>
+
+        <div class="row" style='padding-top: 20px'>
+          <div class="col-lg-3">
+          </div>
+          <div class="col-lg-6">
+            <h1 style='color: #2F3137; font-size: 40pt; text-align: center;'>Mission to Mars</h1>
+          </div>
+          <div class="col-lg-3">
+          </div>
+        </div>
+
+        <div class="row" style="padding-top: 5px; padding-bottom: 50px;">
+          <div class="col-lg-12 text-center">
+            <a class="btn btn-primary btn-md" href="/scrape" role="button">Scrape New Data</a>
+          </div>
+        </div>
+
+      </div>
+    </header>
+  </article>
+
+  <section style='padding-left: 100px; padding-right: 100px;'>
+    <div class="container-fluid">
+      <div class="row">
+        <div class=col-lg-12>
+          <h3 class="heading">Latest Mars News</h3>
+          <h4>{{ mars_dict.news_title }}</h4>
+          <p>{{ mars_dict.news_p|safe }}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-8">
+            <h3 class="heading">Featured Mars Image</h3>
+            <a href="{{ mars_dict.featured_image_url }}"> <img class="figure_img" src="{{ mars_dict.featured_image_url }}" width=900px></a>
+        </div>
+        <div class="col-lg-4">
+          <div class="row">
+            <div class="col-md-12">
+              <div style="border:2px solid lightgrey; padding-left: 10px;">
+                <h4 class="heading">Current Weather on Mars</h4>
+                <p>{{ mars_dict.weather }}</p>
+              </div>
+            </div>
+          </div>
+
+          <br/>
+          <br/>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div style="padding-left:10px;">
+                <h4 class="heading">Mars Facts</h4>
+                {{ mars_dict.facts_table }}
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-12">
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </section>
+
+  <section style='padding-left: 100px; padding-right: 100px; padding-top: 50px;'>
+    <div class="container-fluid">
+      <div class="row">
+        <div class=col-lg-6>
+          <div class="card" style="width: 40rem;">
+              <a href="{{ mars_dict.hemisphere_dict[0].image_url }}"> <img class="card-img-top" src="{{ mars_dict.hemisphere_dict[0].img_url }}" width=400px alt="{{ mars_dict.hemisphere_dict[0].title }}">
+              </a>
+              <div class="card-body">
+                <h4 class="card-text text-center">{{ mars_dict.hemisphere_dict[0].title }}</h4>
+              </div>
+          </div>
+        </div>
+        <div class=col-lg-6>
+          <div class="card" style="width: 40rem;">
+              <a href="{{ mars_dict.hemisphere_dict[1].image_url }}"> <img class="card-img-top" src="{{ mars_dict.hemisphere_dict[1].img_url }}" width=400px alt="{{ mars_dict.hemisphere_dict[1].title }}">
+              </a>
+              <div class="card-body">
+                <h4 class="card-text text-center">{{ mars_dict.hemisphere_dict[1].title }}</h4>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class=col-lg-6>
+          <div class="card" style="width: 40rem;">
+              <a href="{{ mars_dict.hemisphere_dict[2].image_url }}"> <img class="card-img-top" src="{{ mars_dict.hemisphere_dict[2].img_url }}" width=400px alt="{{ mars_dict.hemisphere_dict[2].title }}">
+              </a>
+              <div class="card-body">
+                <h4 class="card-text text-center">{{ mars_dict.hemisphere_dict[2].title }}</h4>
+              </div>
+          </div>
+        </div>
+        <div class=col-lg-6>
+          <div class="card" style="width: 40rem;">
+              <a href="{{ mars_dict.hemisphere_dict[3].image_url }}"> <img class="card-img-top" src="{{ mars_dict.hemisphere_dict[3].img_url }}" width=400px alt="{{ mars_dict.hemisphere_dict[3].title }}">
+              </a>
+              <div class="card-body">
+                <h4 class="card-text text-center">{{ mars_dict.hemisphere_dict[3].title }}</h4>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>

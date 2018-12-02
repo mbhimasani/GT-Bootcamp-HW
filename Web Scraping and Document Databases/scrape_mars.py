@@ -50,12 +50,11 @@ def scrape():
     # Mars facts table
     factsurl = "https://space-facts.com/mars/"
     factsTable = pd.read_html(factsurl)
-    facts_df = factsTable[0]
-    facts_df.columns = ['Description', 'Value']
-    facts_df.set_index('Description', inplace=True)
+    facts_df = factsTable[-1]
+    facts_df = facts_df.rename(columns={0:"Description",1:"Value"})
     factsT_html = facts_df.to_html()
 
-    mars_dict['facts_table'] = factsT_html.replace('\n', '')
+    mars_dict['facts_table'] = factsT_html
 
 
     # Mars hemisphers
@@ -73,4 +72,5 @@ def scrape():
         image_url = "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/" + str(hemisphere_string) + "_enhanced.tif/full.jpg"
         hemisphere_dict.append({"title":title, "image_url":image_url})
 
-    mars_dict['hemispher_dict'] = hemisphere_dict
+    mars_dict['hemisphere_dict'] = hemisphere_dict
+    return mars_dict

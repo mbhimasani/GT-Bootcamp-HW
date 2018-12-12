@@ -1,7 +1,10 @@
 // from data.js
 var tableData = data;
+var tbody = document.getElementById('tbody');
 //
 console.log(tableData);
+generateRows(tableData);
+
 
 // filtering
 var submit = d3.select("#filter-btn");
@@ -26,18 +29,21 @@ submit.on("click", function() {
       return d
     };
   });
+  tbody.innerHTML = "";
+  generateRows(filteredData);
   console.log(filteredData);
 });
 
 
 // version one with pure javascript:
-var tbody = document.getElementById('tbody');
+function generateRows(data) {
+  data.forEach((d) => {
+    var row = document.createElement('tr');
+    row.innerHTML=`<td>${d.datetime}</td><td>${d.city}</td><td>${d.state}</td><td>${d.country}</td><td>${d.shape}</td><td>${d.durationMinutes}</td><td>${d.comments}</td>`;
+    tbody.appendChild(row);
+  });
+};
 
-tableData.forEach((d) => {
-  var row = document.createElement('tr');
-  row.innerHTML=`<td>${d.datetime}</td><td>${d.city}</td><td>${d.state}</td><td>${d.country}</td><td>${d.shape}</td><td>${d.durationMinutes}</td><td>${d.comments}</td>`;
-  tbody.appendChild(row);
-});
 
 
 
